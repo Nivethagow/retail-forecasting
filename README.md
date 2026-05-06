@@ -1,8 +1,5 @@
 # Retail Demand Forecasting
 
-> GBA 6430 Big Data Technology in Business  
-> California State Polytechnic University, Pomona  
-> Instructor: Dr. Mehrdad Koohikamali  
 > Author: Nivetha Ramasamy
 
 Next-day SKU-level demand forecasting for a nationwide retail chain using a full AWS + Databricks pipeline.
