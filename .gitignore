@@ -1,0 +1,39 @@
+# Credentials — NEVER commit these
+configs/aws_config.local.yaml
+*.pem
+*.key
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Large data files (track with Git LFS or just exclude)
+data/raw/*.csv
+data/processed/*.parquet
+data/predictions/*.csv
+
+# Keep folder structure
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/predictions/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Model artifacts
+*.json.model
+xgboost_model.json
+
+# IDE
+.vscode/
+.idea/

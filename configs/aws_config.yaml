@@ -1,0 +1,43 @@
+# AWS Configuration — Retail Demand Forecasting
+# Author: Nivetha Ramasamy
+# Copy to aws_config.local.yaml and fill in your values.
+# NEVER commit aws_config.local.yaml to git.
+
+aws:
+  region: us-east-1
+  account_id: "YOUR_ACCOUNT_ID"
+
+s3:
+  bucket: "retail-forecasting-nivetha"
+  prefixes:
+    raw: "data/raw/"
+    processed: "data/processed/"
+    predictions: "data/predictions/"
+    athena_results: "athena-results/"
+    model_artifacts: "models/"
+
+iam:
+  glue_role_arn: "arn:aws:iam::YOUR_ACCOUNT_ID:role/gluecrawler"
+  sagemaker_role_arn: "arn:aws:iam::YOUR_ACCOUNT_ID:role/AmazonSageMaker-ExecutionRole"
+  group_name: "datadefroster"
+
+glue:
+  database: "retail_forecasting_db"
+  crawler_name: "retail-forecasting-crawler"
+  table_prefix: "retail_"
+
+athena:
+  workgroup: "primary"
+  output_location: "s3://retail-forecasting-nivetha/athena-results/"
+
+sagemaker:
+  instance_type: "ml.m5.xlarge"
+  instance_count: 1
+  max_runtime_seconds: 3600
+  framework_version: "1.7-1"
+
+databricks:
+  workspace_url: "https://YOUR_WORKSPACE.azuredatabricks.net"
+  cluster_id: "YOUR_CLUSTER_ID"
+  dbfs_input_path: "/FileStore/retail_data/retail_store_inventory.csv"
+  dbfs_output_path: "/FileStore/retail_data/retail_store_inventory_cleaned.parquet"

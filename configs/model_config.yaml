@@ -1,0 +1,54 @@
+# Model Configuration — XGBoost Demand Forecasting
+# Author: Nivetha Ramasamy
+
+model:
+  name: "xgboost_retail_demand"
+  version: "1.0.0"
+  algorithm: "xgboost"
+  target: "next_day_units_sold"
+
+hyperparameters:
+  n_estimators: 300
+  learning_rate: 0.05
+  max_depth: 7
+  subsample: 0.9
+  colsample_bytree: 0.8
+  random_state: 42
+  objective: "reg:squarederror"
+  eval_metric: "rmse"
+
+features:
+  numeric:
+    - price
+    - discount
+    - inventory_level
+    - competitor_pricing
+    - price_gap
+    - lag1_units
+    - lag2_units
+    - lag3_units
+    - rolling_3d_avg
+    - day_of_week
+    - month
+    - year
+    - weather_idx
+  binary:
+    - promo_flag
+    - is_weekend
+
+train_test_split:
+  train_end: "2023-09-30"
+  test_start: "2023-10-01"
+  test_end: "2024-01-01"
+  split_column: "Date"
+
+evaluation:
+  metrics:
+    - mape
+    - filtered_mape
+    - rmse
+    - mae
+  filtered_mape_threshold: 10   # Only compute MAPE where actual > this value
+  group_by:
+    - "Store ID"
+    - "Product ID"
